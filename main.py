@@ -157,14 +157,14 @@ def contact():
         name = request.form["name"]
         email = request.form["email"]
         phone = request.form["phone"]
-        message = request.form["message"].encode("utf-8", "strict")
+        message = request.form["message"]
 
         with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
             connection.starttls()
             connection.login(user=MY_EMAIL, password=MY_PASSWORD)
             connection.sendmail(
                 from_addr=MY_EMAIL,
-                to_addrs="abhishekbiradar0207@gmail.com",
+                to_addrs=os.environ.get("RECEIVING_EMAIL"),
                 msg=f"Subject:A new user enrolled in your website\n\n\n"
                     f"Data of the user\n"
                     f"Name: {name}\n"
@@ -229,4 +229,4 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=False, port=5001)
