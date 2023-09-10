@@ -31,6 +31,10 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <!--TODO: render login form here-->
         {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        <br>
+        <a href="{{ url_for('register') }}">
+          <input class="btn btn-primary btn-md" id="login" name="Register" type="button" value="Register" fdprocessedid="wzls55">
+        </a>
       </div>
     </div>
   </div>

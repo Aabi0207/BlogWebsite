@@ -122,16 +122,17 @@ def login():
     form = CreateLoginForm()
     if form.validate_on_submit():
         user = db.session.execute(db.select(User).where(User.email == form.email.data)).scalar()
-        is_password_correct = check_password_hash(user.password, form.password.data)
         if not user:
-            form.email.errors.append("Invalid email address.")
+            form.email.errors.append("Invalid email address, If you don't have a account first Register.")
             form.email.errors.reverse()
-        elif not is_password_correct:
-            form.password.errors.append("wrong Password")
-            form.password.errors.reverse()
         else:
-            login_user(user)
-            return redirect(url_for("home"))
+            is_password_correct = check_password_hash(user.password, form.password.data)
+            if not is_password_correct:
+                form.password.errors.append("wrong Password")
+                form.password.errors.reverse()
+            else:
+                login_user(user)
+                return redirect(url_for("home"))
     return render_template("login.html", form=form)
 
 
