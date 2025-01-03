@@ -1,5 +1,7 @@
 # BlogWebsite
 
+| [Live Demo](https://bhanupratapsingh.pythonanywhere.com/)
+
 ## Description
 
 BlogWebsite is a dynamic platform that allows users to create, read, update, and delete blog posts. It offers a user-friendly interface for both authors and readers, featuring:
